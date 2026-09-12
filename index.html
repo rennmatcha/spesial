@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Selamat Ulang Tahunku ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Georgia, serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+
+        .card {
+            background: #fff;
+            padding: 50px 35px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(255, 107, 107, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 7px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #ff6b6b);
+            border-radius: 30px 30px 0 0;
+        }
+
+        .emoji {
+            font-size: 70px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .isi {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .isi p {
+            margin-bottom: 20px;
+        }
+
+        .nama-nanda {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .penutup {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 16px;
+            color: #777;
+            font-style: italic;
+        }
+
+        #confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .isi {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="confetti"></canvas>
+
+    <div class="card">
+        <div class="emoji">🎂🤍✨</div>
+        <h1>Selamat Ulang Tahun untukku 🎈</h1>
+
+        <div class="isi">
+            <p>hari ini, aku bertambah satu tahun lagi.</p>
+
+            <p>banyak hal yang sudah aku lewati sampai akhirnya bisa sampai di hari ini. ada hal yang membuatku bahagia, ada juga yang sempat membuatku jatuh dan hampir menyerah. tapi ternyata, aku masih di sini.</p>
+
+            <p>dan ada satu orang yang ingin aku ucapkan terima kasih secara khusus.</p>
+
+            <p>terima kasih, <span class="nama-nanda">nanda</span>.<br>
+               terima kasih karena sudah bertahan dan tetap ada sampai aku bisa sampai di hari ulang tahunku. terima kasih karena sudah menemani aku melewati banyak hal, mendengarkan ceritaku, dan menjadi bagian dari perjalanan di umurku yang sebelumnya.</p>
+
+            <p>mungkin perjalanan kita nggak selalu mudah. ada hari-hari yang penuh bahagia, ada juga hari-hari ketika kita sama-sama lelah dan bingung. tapi aku bersyukur karena sampai hari ini, kita masih sama-sama memilih untuk menjaga, memahami, dan menemani satu sama lain.</p>
+
+            <p>aku nggak tau seperti apa satu tahun ke depan. tapi untuk hari ini, aku ingin menikmati hari ini dan menghargai semua orang yang masih memilih untuk berada di sisiku.</p>
+
+            <p>semoga di umur yang baru ini, aku bisa menjadi versi diriku yang lebih baik. lebih kuat, lebih tenang, lebih dewasa, dan lebih menghargai setiap hal kecil yang aku punya.</p>
+
+            <p>dan untuk <span class="nama-nanda">nanda</span>...<br>
+               terima kasih sudah menjadi salah satu bagian paling berarti dari perjalanan umurku sampai hari ini.</p>
+
+            <p>selamat ulang tahun untuk diriku sendiri.<br>
+               semoga tahun ini membawa lebih banyak hal baik, lebih banyak alasan untuk tersenyum, dan semoga orang-orang yang aku sayangi tetap diberi kesempatan untuk berjalan bersamaku. 🤍</p>
+        </div>
+
+        <div class="penutup">
+            — Dengan rasa syukur 🤍
+        </div>
+    </div>
+
+    <script>
+        // Confetti
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        let partikel = [];
+
+        function ukuranCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function buatPartikel() {
+            for (let i = 0; i < 200; i++) {
+                partikel.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * -canvas.height,
+                    w: Math.random() * 10 + 5,
+                    h: Math.random() * 10 + 5,
+                    warna: ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#fff'][Math.floor(Math.random() * 6)],
+                    kecepatan: Math.random() * 3 + 2,
+                    putar: Math.random() * 360
+                });
+            }
+        }
+
+        function animasi() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            partikel.forEach((p, i) => {
+                p.y += p.kecepatan;
+                p.x += Math.sin(p.y / 30) * 0.5;
+                p.putar += 3;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.putar * Math.PI / 180);
+                ctx.fillStyle = p.warna;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+                if (p.y > canvas.height) partikel.splice(i, 1);
+            });
+            if (partikel.length > 0) requestAnimationFrame(animasi);
+        }
+
+        ukuranCanvas();
+        buatPartikel();
+        animasi();
+        window.addEventListener('resize', ukuranCanvas);
+    </script>
+</body>
+</html>
